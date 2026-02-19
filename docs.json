@@ -7,6 +7,7 @@
       "light": "#3B82F6",   
       "dark": "#1E40AF"     
   },
+  "description": "Plotweaver is an AI-powered end-to-end film production and narrative platform designed to bridge the gap between creative vision and global commercial viability. By integrating cultural intelligence with cutting-edge Large Language Models (LLMs), Plotweaver empowers filmmakers, screenwriters, and content creators to build authentic, high-quality narratives that resonate across borders.",
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
