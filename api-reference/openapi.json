@@ -1,72 +1,23 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
-    "version": "1.0.0"
+    "title": "Plotweaver Dubbing and Subtitle API",
+    "summary": "['Plotweaver Dubbing And Subtitle API ']",
+    "version": "0.1.0"
   },
-  "servers": [
-    {
-      "url": "http://sandbox.mintlify.com"
-    }
-  ],
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ],
   "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
+    "/v1/auth/signup": {
       "post": {
-        "description": "Creates a new plant in the store",
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Signup",
+        "operationId": "signup_v1_auth_signup_post",
         "requestBody": {
-          "description": "Plant to add to the store",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "$ref": "#/components/schemas/UserSignUpData"
               }
             }
           },
@@ -74,21 +25,21 @@
         },
         "responses": {
           "200": {
-            "description": "plant response",
+            "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Plant"
+                  "$ref": "#/components/schemas/UserModel"
                 }
               }
             }
           },
-          "400": {
-            "description": "unexpected error",
+          "422": {
+            "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -96,121 +47,638 @@
         }
       }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
+    "/v1/auth/initiate_password_reset": {
+      "post": {
+        "tags": [
+          "Authentication"
         ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
+        "summary": "Initiate Password Reset",
+        "operationId": "initiate_password_reset_v1_auth_initiate_password_reset_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_initiate_password_reset_v1_auth_initiate_password_reset_post"
+              }
+            }
           },
-          "400": {
-            "description": "unexpected error",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
+
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
           }
         }
       }
-    }
-  },
-  "webhooks": {
-    "/plant/webhook": {
+    },
+    "/v1/auth/verify_password_reset": {
       "post": {
-        "description": "Information about a new plant added to the store",
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Verify Reset Password Otp",
+        "operationId": "verify_reset_password_otp_v1_auth_verify_password_reset_post",
         "requestBody": {
-          "description": "Plant added to the store",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "$ref": "#/components/schemas/Body_verify_reset_password_otp_v1_auth_verify_password_reset_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/reset_password": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Reset Password",
+        "operationId": "reset_password_v1_auth_reset_password_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordResetData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/token": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Signin",
+        "operationId": "signin_v1_auth_token_post",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_signin_v1_auth_token_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Token"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/logout": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Logout",
+        "operationId": "logout_v1_auth_logout_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+
+                }
               }
             }
           }
         },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/auth/refresh_token": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Get Refresh Token",
+        "operationId": "get_refresh_token_v1_auth_refresh_token_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenModel"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
-            "description": "Return a 200 status to indicate that the data was received successfully"
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
           }
         }
+      }
+    },
+    "/v1/auth/me": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Get User Detail",
+        "operationId": "get_user_detail_v1_auth_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Update User Detail",
+        "operationId": "update_user_detail_v1_auth_me_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
       }
     }
   },
   "components": {
     "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
+      "Body_initiate_password_reset_v1_auth_initiate_password_reset_post": {
         "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
-          },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "email"
+        ],
+        "title": "Body_initiate_password_reset_v1_auth_initiate_password_reset_post"
       },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
+      "Body_signin_v1_auth_token_post": {
+        "properties": {
+          "grant_type": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^password$"
+              },
+              {
+                "type": "null"
               }
-            }
-          }
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
+            ],
+            "title": "Grant Type"
           },
-          "message": {
-            "type": "string"
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "title": "Password"
+          },
+          "scope": {
+            "type": "string",
+            "title": "Scope",
+            "default": ""
+          },
+          "client_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Id"
+          },
+          "client_secret": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "format": "password",
+            "title": "Client Secret"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "Body_signin_v1_auth_token_post"
+      },
+      "Body_verify_reset_password_otp_v1_auth_verify_password_reset_post": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "email"
+        ],
+        "title": "Body_verify_reset_password_otp_v1_auth_verify_password_reset_post"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "PasswordResetData": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 254,
+            "format": "email",
+            "title": "Email"
+          },
+          "new_password": {
+            "type": "string",
+            "minLength": 8,
+            "title": "New Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "email",
+          "new_password"
+        ],
+        "title": "PasswordResetData"
+      },
+      "RefreshTokenModel": {
+        "properties": {
+          "refresh_token": {
+            "type": "string",
+            "minLength": 32,
+            "title": "Refresh Token"
+          }
+        },
+        "type": "object",
+        "required": [
+          "refresh_token"
+        ],
+        "title": "RefreshTokenModel"
+      },
+      "Token": {
+        "properties": {
+          "token_type": {
+            "type": "string",
+            "title": "Token Type"
+          },
+          "access_token": {
+            "type": "string",
+            "title": "Access Token"
+          },
+          "refresh_token": {
+            "type": "string",
+            "title": "Refresh Token"
+          },
+          "access_expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Access Expires At"
+          },
+          "refresh_expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refresh Expires At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "token_type",
+          "access_token",
+          "refresh_token"
+        ],
+        "title": "Token"
+      },
+      "UpdateUserModel": {
+        "properties": {
+          "old_password": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 8
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Old Password"
+          },
+          "new_password": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 8
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "New Password"
+          }
+        },
+        "type": "object",
+        "title": "UpdateUserModel"
+      },
+      "UserModel": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "date_created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Date Created"
+          },
+          "date_updated": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Date Updated"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "email",
+          "date_created",
+          "date_updated"
+        ],
+        "title": "UserModel"
+      },
+      "UserSignUpData": {
+        "properties": {
+          "password": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 8,
+            "title": "Password"
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 254,
+            "format": "email",
+            "title": "Email"
+          }
+        },
+        "type": "object",
+        "required": [
+          "password",
+          "email"
+        ],
+        "title": "UserSignUpData"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
       }
     },
     "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+      "OAuth2PasswordBearer": {
+        "type": "oauth2",
+        "flows": {
+          "password": {
+            "scopes": {
+
+            },
+            "tokenUrl": "v1/auth/token"
+          }
+        }
       }
     }
   }
