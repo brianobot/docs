@@ -35,20 +35,13 @@
               "quickstart",
               "development"
             ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/language_support.mdx",
-              "ai-tools/webhooks"
-            ]
-          },
+          },      
           {
             "group": "More Guide",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "ai-tools/language_support",
+              "ai-tools/webhooks",
+              "ai-tools/report_issue"
             ]
           }
         ]
@@ -63,31 +56,12 @@
             ]
           },
           {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
+            "group": "API Reference",
+            "openapi": "api-reference/openapi.json"
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://www.plotweaver.app/blog",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://www.plotweaver.app/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
