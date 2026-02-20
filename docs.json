@@ -10,6 +10,20 @@
   "description": "Plotweaver is an AI-powered end-to-end film production and narrative platform designed to bridge the gap between creative vision and global commercial viability. By integrating cultural intelligence with cutting-edge Large Language Models (LLMs), Plotweaver empowers filmmakers, screenwriters, and content creators to build authentic, high-quality narratives that resonate across borders.",
   "favicon": "/favicon.svg",
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Documentation",
+          "icon": "book-open-cover",
+          "href": "https://mintlify.com/docs"
+        },
+        {
+          "anchor": "Blog",
+          "icon": "newspaper",
+          "href": "https://mintlify.com/blog"
+        }
+      ]
+    },
     "tabs": [
       {
         "tab": "Guides",
@@ -25,9 +39,8 @@
           {
             "group": "AI tools",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "ai-tools/language_support.mdx",
+              "ai-tools/webhooks"
             ]
           },
           {
