@@ -1,0 +1,38 @@
+
+
+Get your first synthesised audio response in under two minutes.
+
+### 1. Get your API key
+
+Create an account at [dashboard.plotweaver.app](https://dashboard.plotweaver.app), navigate to **API Keys**, and generate a key. Start in sandbox mode — no production approval required to explore.
+
+### 2. Make your first request
+
+<CodeGroup>
+```bash POST /speech/synthesize
+# Synthesise a Yoruba greeting
+curl -X POST [https://api.plotweaver.app/v1/speech/synthesize](https://api.plotweaver.app/v1/speech/synthesize) \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "text": "Ẹ káàárọ̀. A ku iṣẹ́.",
+    "language": "yoruba",
+    "voice": "female_standard",
+    "format": "mp3"
+  }'
+```
+
+
+```json
+{
+  "audio_url": "[https://cdn.plotweaver.app/audio/abc123.mp3](https://cdn.plotweaver.app/audio/abc123.mp3)",
+  "duration_seconds": 4.2
+}
+```
+
+</CodeGroup>
+
+<Check>
+The audio_url is a signed CDN link valid for 1 hour. For persistent storage, download and host the file yourself.
+</Check>
+

@@ -1,33 +1,49 @@
 ---
 title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+description: 'Integration guide for Plotweaver AI Dubbing and Subtitle APIs'
 ---
 
 <Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
+    Plotweaver AI is built to break language barriers. Our engine specializes in high-fidelity voice cloning and localization for over 12 major African languages, ensuring your content retains its original emotional impact.
 </Note>
 
-## Welcome
+## Welcome to the Plotweaver API
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+Plotweaver AI provides developers with a robust, scalable infrastructure for automating video localization. Whether you are building a streaming platform, an EdTech tool, or a content distribution network, our API suite allows you to transform media at scale without losing the "soul" of the performance.
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+We offer two primary integration methods to get you up and running quickly:
+
+- **OpenAPI Specification**: Use our standardized schema to auto-generate SDKs and test endpoints in real-time.
+- **MDX Components**: Leverage custom components for a highly tailored documentation experience.
+
+<CardGroup cols={2}>
+    <Card
+        title="Dubbing & Voice Cloning"
+        icon="microphone-lines"
+        href="/api-reference/dubbing"
+        >
+        Generate high-fidelity audio in languages like Yoruba, Swahili, and Amharic while preserving the original speaker's tone.
+    </Card>
+    <Card
+        title="Subtitle Generation"
+        icon="closed-captioning"
+        href="/api-reference/subtitles"
+        >
+        Produce accurate, time-synced SRT and VTT files localized for specific cultural contexts and linguistic nuances.
+    </Card>
+</CardGroup>
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+Security is at the heart of our platform. All Plotweaver AI API endpoints are protected and require a Bearer Token for access. You can generate and manage your API keys within your Plotweaver developer dashboard.
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+To authenticate, include the Authorization header in your HTTP requests as shown below:
+
+```http
+Authorization: Bearer <YOUR_API_KEY>
 ```
+
+### Next Steps
+- **Get your API Key**: Head over to the Dashboard to retrieve your credentials.
+- **Explore the Reference**: Check out the API Reference to see how to track processing jobs.
+- **View the Specification**: Dive deep into our OpenAPI file for full schema details.

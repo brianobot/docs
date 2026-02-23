@@ -13,11 +13,6 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "icon": "book-open-cover",
-          "href": "https://mintlify.com/docs"
-        },
-        {
           "anchor": "Blog",
           "icon": "newspaper",
           "href": "https://mintlify.com/blog"
@@ -32,16 +27,29 @@
             "group": "Getting started",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "getting-started/quickstart",
+              "getting-started/authentication",
+              "getting-started/base_URL"
             ]
           },      
           {
-            "group": "More Guide",
+            "group": "Core Concepts",
             "pages": [
-              "ai-tools/language_support",
-              "ai-tools/webhooks",
-              "ai-tools/report_issue"
+              "core-concepts/languages",
+              "core-concepts/voices",
+              "core-concepts/async_jobs",
+              "core-concepts/voice_agents"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "reference/supported-formats",
+              "reference/rate-limits",
+              "reference/error_handling",
+              "reference/data-governance",
+              "reference/use-cases",
+              "reference/support"
             ]
           }
         ]

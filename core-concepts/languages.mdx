@@ -1,0 +1,56 @@
+
+PlotWeaver treats each language as an independent system — separately trained, separately evaluated, and separately optimised for phonology, tonal structure, and prosody. Language availability varies by endpoint.
+
+<CardGroup cols={4}>
+  <Card title="Yoruba">
+    West Africa
+    <br />
+    <span style={{ color: '#10b981', fontSize: '12px', fontWeight: 'bold' }}>GA</span>
+  </Card>
+
+  <Card title="Igbo">
+    West Africa
+    <br />
+    <span style={{ color: '#10b981', fontSize: '12px', fontWeight: 'bold' }}>GA</span>
+  </Card>
+
+  <Card title="Hausa">
+    West Africa
+    <br />
+    <span style={{ color: '#10b981', fontSize: '12px', fontWeight: 'bold' }}>GA</span>
+  </Card>
+
+  <Card title="Swahili">
+    East Africa
+    <br />
+    <span style={{ color: '#10b981', fontSize: '12px', fontWeight: 'bold' }}>GA</span>
+  </Card>
+
+  <Card title="Akan">
+    West Africa
+    <br />
+    <span style={{ color: '#8b5cf6', fontSize: '12px', fontWeight: 'bold' }}>Beta</span>
+  </Card>
+
+  <Card title="Zulu">
+    Southern Africa
+    <br />
+    <span style={{ color: '#8b5cf6', fontSize: '12px', fontWeight: 'bold' }}>Beta</span>
+  </Card>
+
+  <Card title="Afrikaans">
+    Southern Africa
+    <br />
+    <span style={{ color: '#10b981', fontSize: '12px', fontWeight: 'bold' }}>GA</span>
+  </Card>
+
+  <Card title="Ewe">
+    West Africa
+    <br />
+    <span style={{ color: '#8b5cf6', fontSize: '12px', fontWeight: 'bold' }}>Beta</span>
+  </Card>
+</CardGroup>
+
+<Info>
+  Pass language identifiers as lowercase strings (e.g., "yoruba", "swahili"). Retrieve the full list of supported languages and their status at `GET /languages`.
+</Info>

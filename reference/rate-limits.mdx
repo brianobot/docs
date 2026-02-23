@@ -1,0 +1,10 @@
+
+Limits are applied per API key and reset on a rolling 60-second window.
+
+| ENDPOINT TYPE | SANDBOX | GROWTH | ENTERPRISE |
+| :--- | :--- | :--- | :--- |
+| `TTS (characters / min)` | 5,000 | 100,000 | Custom |
+| `Audio Processing (min / hr)` | 10 | 500 | Custom |
+| `Agent Concurrent Sessions` | 5 | 100 | Custom |
+
+When you exceed a rate limit, the API returns `429 Too Many Requests` with a `Retry-After` header. Enterprise plans include dedicated capacity with guaranteed throughput SLAs.

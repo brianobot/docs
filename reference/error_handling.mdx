@@ -1,0 +1,31 @@
+
+
+All errors return a consistent JSON envelope. Handle errors by checking the HTTP status code first, then the `error.code` field for programmatic handling.
+
+```json
+{
+  "error": {
+    "code": "LANGUAGE_NOT_SUPPORTED",
+    "message": "The requested language is not available.",
+    "request_id": "req_a1b2c3d4"
+  }
+}
+```
+
+| HTTP STATUS | ERROR CODE | DESCRIPTION |
+| :--- | :--- | :--- |
+| 400 | <span style={{ color: '#f87171' }}>INVALID_REQUEST</span> | Malformed request body or missing required field. |
+| 401 | <span style={{ color: '#f87171' }}>UNAUTHORIZED</span> | Missing or invalid API key. |
+| 404 | <span style={{ color: '#f87171' }}>LANGUAGE_NOT_SUPPORTED</span> | Requested language is not available on this endpoint. |
+| 404 | <span style={{ color: '#f87171' }}>VOICE_NOT_FOUND</span> | Requested voice ID does not exist for this language. |
+| 404 | <span style={{ color: '#f87171' }}>JOB_NOT_FOUND</span> | The specified `job_id` does not exist. |
+| 422 | <span style={{ color: '#f87171' }}>AUDIO_PROCESSING_FAILED</span> | Source audio could not be parsed or transcribed. |
+| 429 | <span style={{ color: '#f87171' }}>RATE_LIMIT_EXCEEDED</span> | Request rate exceeds plan limits. See `Retry-After`. |
+| 500 | <span style={{ color: '#f87171' }}>INTERNAL_ERROR</span> | Unexpected server error. Retry with exponential backoff. |
+
+
+<Info>
+All responses include a request_id. Include this in any support ticket to help us trace issues quickly.
+</Info>
+
+

@@ -1,0 +1,10 @@
+
+
+Long-running operations — dubbing, long-form synthesis, subtitling — are handled asynchronously. When you submit these requests, you receive a `job_id` immediately. Poll the job endpoint to check status and retrieve results when complete.
+
+| STATUS | MEANING |
+| :--- | :--- |
+| `queued` | Job received and awaiting processing |
+| `processing` | Actively being processed |
+| `completed` | Output is ready; result URL is available |
+| `failed` | Processing failed; error details included in response |
