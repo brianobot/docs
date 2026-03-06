@@ -16,8 +16,9 @@
                 "tags": [
                     "Video"
                 ],
-                "summary": "Stream Audio File",
-                "operationId": "stream_audio_file_v1_videos_subtitle_post",
+                "summary": "Subtitle Video File",
+                "description": "**Generate and Overlay Subtitles onto a Video**\n\nProcesses an input video to extract audio, generate transcriptions,\nand burn-in or side-load subtitles based on the provided configuration.",
+                "operationId": "subtitle_video_file_v1_videos_subtitle_post",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -56,6 +57,7 @@
                     "Voice"
                 ],
                 "summary": "Stream Audio File",
+                "description": "**Stream Real-Time AI Audio Synthesis**\n\nConverts text to speech and streams the resulting audio data back to the client\nin real-time. This endpoint is designed for low-latency applications where\nplayback should begin before the entire file is generated.",
                 "operationId": "stream_audio_file_v1_voices_stream_post",
                 "requestBody": {
                     "content": {
