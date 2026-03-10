@@ -1,0 +1,20 @@
+---
+title: "Authentication"
+description: "All API requests require a bearer token passed in the Authorization header."
+---
+
+```http
+# Include this header in every request
+Authorization: Bearer YOUR_API_KEY
+```
+
+| CONCEPT | DETAIL |
+| :--- | :--- |
+| **Key Management** | Generate, rotate, and revoke keys from the PlotWeaver developer dashboard. |
+| **Sandbox Mode** | Sandbox keys are rate-limited and watermarked. Audio is not billable. |
+| **Production Keys** | Require production access approval. Contact dev@plotweaver.app. |
+
+
+<Warning>
+Never expose API keys in client-side code or public repositories. Use environment variables or a secrets manager.
+</Warning>
